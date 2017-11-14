@@ -25,24 +25,30 @@
 			dp.viewType = "Week";
 			// customize with 15-minute rows, if possible
 		  
-			dp.events.list = [
-			{
-				"id":"1",
-				"text":"PoC KO",
-				"start":"2017-11-14T11:00:00",
-				"end":"2017-11-14T12:00:00"
-			},
-			{
-				"id":"2",
-				"text":"SF",
-				"start":"2017-11-14T15:00:00",
-				"end":"2017-11-14T18:00:00"
-			}];
+			dp.events.list = [{"id":"1","text":"PoC KO","start":"2017-11-14T11:00:00","end":"2017-11-14T12:00:00"},
+			{"id":"2","text":"SF","start":"2017-11-14T15:00:00","end":"2017-11-14T18:00:00"}];
 		  
 		 	// ADD REST CALL HERE
 			function loadEvents() {
 			}
 			// MAP JSON to id / text / start / end
+
+			// FILL OUT THESE THREE CALLBACKS WITH REST CRUD
+			dp.onEventMoved = function (args) { 
+				alert("Event Moved"); 
+			}
+
+			dp.onEventResized = function (args) { 
+				alert("Event Resized"); 
+			}
+
+			dp.onTimeRangeSelected = function (args) { 
+				alert("Range Selected"); 
+			}
+
+			// ON EVENT SELECTED?
+
+			// ON EVENT DELETED?
 
 			dp.init();
 		</script>
