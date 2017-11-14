@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Calendar theme -->
+		<link type="text/css" rel="stylesheet" href="css/calendar_transparent.css" />  
+		<!-- Navigator theme -->
+		<link type="text/css" rel="stylesheet" href="css/navigator_transparent.css" /> 
+		<!-- Day Pilot calendar library -->
+		<script src="js/daypilot-all.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		
+		<!-- Placeholders for calendar -->
+		<div style="float:left; width: 160px;">
+			<div id="nav"></div>
+		</div>
+		<div style="margin-left: 160px;">
+			<div id="dp"></div>
+		</div>
+
+		<!-- Calendar -->
+		<script type="text/javascript">
+		 	var dp = new DayPilot.Calendar("dp");
+		 	dp.theme = "calendar_transparent"; // customize w/theme designer @ Day Pilot
+			dp.viewType = "Week";
+			// customize with 15-minute rows, if possible
+		  
+			dp.events.list = [
+			{
+				"id":"1",
+				"text":"PoC KO",
+				"start":"2017-11-14T11:00:00",
+				"end":"2017-11-14T12:00:00"
+			},
+			{
+				"id":"2",
+				"text":"SF",
+				"start":"2017-11-14T15:00:00",
+				"end":"2017-11-14T18:00:00"
+			}];
+		  
+		 	// ADD REST CALL HERE
+			function loadEvents() {
+			}
+			// MAP JSON to id / text / start / end
+
+			dp.init();
+		</script>
+
+		<!-- Date Picker -->
+		<script type="text/javascript">
+			var nav = new DayPilot.Navigator("nav");
+			nav.showMonths = 1;
+			nav.skipMonths = 1;
+			nav.selectMode = "week";
+			nav.theme = "navigator_transparent"
+			nav.init();
+			  nav.onTimeRangeSelected = function(args) {
+		      dp.startDate = args.day;
+		      dp.update();
+		      //loadEvents();
+		  };
+		</script>
+
+	</body>
+</html>
