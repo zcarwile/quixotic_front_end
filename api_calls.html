@@ -31,6 +31,15 @@
 			<input id="getAllUsers" type="button" value="Get All Users">
 			<p id="showUsers"></p>
 		</div>
+		<div>
+			<h3>Get events in time range!</h3>
+			<input id="getEventsInTimeRange" type="button" value="Get Events">
+			<!---
+			<input... start>
+			<input... end>
+			-->
+			<p id="showEventsInTimeRange"></p>
+		</div>
 
 		<!-- This is effectively our listener w/callbacks -->
 		<script>
@@ -77,6 +86,8 @@
 					$("#showUsers").text(JSON.stringify(data)).append("<BR>");
 				});
 			});
+
+			// need controller for getEventsInTimeRange
 
 		});
 
