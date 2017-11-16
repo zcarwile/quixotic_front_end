@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- JQuery 3.2.1 -->
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		
+		<!-- Controls and where to put the data -->
+		<div>
+			<h3>Specific event</h3>
+			<input id="getEvent" type="button" value="Load Event">
+			<p id="showEvent"></p>
+		</div>
+		<div>
+			<h3>Specific timeblock</h3>
+			<input id="getTimeblock" type="button" value="Load Timeblock">
+			<p id="showTimeblock"></p>
+		</div>
+		<div>
+			<h3>All timeblock</h3>
+			<input id="getAllTimeblocks" type="button" value="Load All Timeblocks">
+			<p id="showTimeblocks"></p>
+		</div>
+		<div>
+			<h3>Create user named "test"</h3>
+			<input id="createUser" type="button" value="Create User">
+		</div>
+		<div>
+			<h3>Get all users</h3>
+			<input id="getAllUsers" type="button" value="Get All Users">
+			<p id="showUsers"></p>
+		</div>
+
+		<!-- This is effectively our listener w/callbacks -->
+		<script>
+		$(document).ready( function() {
+
+			$("#getEvent").click( function() {
+				$.ajax({
+					url: "http://ec2-54-173-30-19.compute-1.amazonaws.com:8000/quixotic_api/events/27490/"
+				}).then( function(data) {
+					$("#showEvent").append(JSON.stringify(data)).append("<BR>");
+				});
+			});
+
+			$("#getTimeblock").click( function() {
+				$.ajax({
+					url: "http://ec2-54-173-30-19.compute-1.amazonaws.com:8000/quixotic_api/timeblocks/2/"
+				}).then( function(data) {
+					$("#showTimeblock").append(JSON.stringify(data)).append("<BR>");
+				});
+			});
+
+			$("#getAllTimeblocks").click( function() {
+				$.ajax({
+					url: "http://ec2-54-173-30-19.compute-1.amazonaws.com:8000/quixotic_api/timeblocks/"
+				}).then( function(data) {
+					$("#showTimeblocks").text(JSON.stringify(data)).append("<BR>");
+				});
+			});
+
+			$("#createUser").click( function() {
+				$.ajax({
+					type: "POST",
+					url: "http://ec2-54-173-30-19.compute-1.amazonaws.com:8000/quixotic_api/users/",
+					data: {"name": "test", "email":"test@test.io"}
+				}).then( function(data) {
+					alert("POST complete");
+				});
+			});
+
+			$("#getAllUsers").click( function() {
+				$.ajax({
+					url: "http://ec2-54-173-30-19.compute-1.amazonaws.com:8000/quixotic_api/users/"
+				}).then( function(data) {
+					$("#showUsers").text(JSON.stringify(data)).append("<BR>");
+				});
+			});
+
+		});
+
+		</script>
+
+	</body>
+</html>
