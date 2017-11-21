@@ -3,6 +3,10 @@
 	<head>
 		<!-- JQuery 3.2.1 -->
 		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<!-- Day Pilot calendar library -->
+		<script src="js/daypilot-all.min.js" type="text/javascript"></script>
+		<!-- Day Pilot Navigator (datepicker) theme -->
+		<link type="text/css" rel="stylesheet" href="css/navigator_transparent.css" /> 
 	</head>
 	<body>
 		
@@ -34,12 +38,27 @@
 		<div>
 			<h3>Get events in time range!</h3>
 			<input id="getEventsInTimeRange" type="button" value="Get Events">
+			<div id="nav"></div>
+			<div id="selectedDate"></div>
 			<!---
 			<input... start>
 			<input... end>
 			-->
 			<p id="showEventsInTimeRange"></p>
 		</div>
+
+		<!-- Code for datepicker -->
+		<script type="text/javascript">
+			var nav = new DayPilot.Navigator("nav");
+			nav.showMonths = 1;
+			nav.skipMonths = 1;
+			nav.selectMode = "week";
+			nav.theme = "navigator_transparent"
+			nav.init();
+			nav.onTimeRangeSelected = function(args) {
+		    	document.getElementById("selectedDate").innerHTML = args.day;
+			};
+		</script>
 
 		<!-- This is effectively our listener w/callbacks -->
 		<script>
@@ -88,6 +107,10 @@
 			});
 
 			// need controller for getEventsInTimeRange
+			// get date from datepicker and send to API call
+			$("#getEventsInTimeRange").click( function() {
+				$("#showEventsInTimeRange").text("The struggle is real");
+			});
 
 		});
 
