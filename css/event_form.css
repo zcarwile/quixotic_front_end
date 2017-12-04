@@ -1,0 +1,25 @@
+#eventEntryForm { 
+  display: none;
+  background: cyan;
+  border: 6px blue; 
+  padding: 2em;
+  width: 400px;
+  text-align: center;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+input, textarea { 
+  
+  display: block; 
+  width: 280px; 
+  padding: .4em;
+}
+textarea { height: 80px; resize: none; }
+
+.formBtn { 
+  width: 60px;
+  display: inline-block;
+}
